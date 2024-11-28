@@ -1,11 +1,134 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Почетна">
+  <main>
+    <section class="relative min-h-screen flex items-center">
+      <div
+        class="absolute inset-0 bg-[url('/images/law-office.jpg')] bg-cover bg-center"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-navy-dark/95 to-navy-dark/80"
+        >
+        </div>
+      </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative pt-20">
+        <div class="max-w-3xl">
+          <div class="flex justify-center mb-12">
+            <img
+              src="/images/MIO.jpg"
+              alt="Адвокат Миодраг Марковић"
+              class="w-64 h-64 rounded-full object-cover border-4 border-gold-400 shadow-custom-gold"
+              style="image-rendering: -webkit-optimize-contrast;"
+              loading="eager"
+              decoding="sync"
+            />
+          </div>
+          <h1
+            class="text-5xl sm:text-6xl md:text-7xl font-playfair font-bold text-white mb-8 leading-tight"
+          >
+            <span class="text-gold-400">Правна експертиза</span>
+            <span class="block mt-2">којој можете веровати</span>
+          </h1>
+          <p class="text-xl md:text-2xl text-stone-light mb-12 leading-relaxed">
+            Лорем ипсум долор сит амет, цонсецтетур адиписцинг елит. Сед до
+            еиусмод темпор инцидидунт ут лаборе ет долоре магна алиqуа.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 bg-gradient-to-b from-cream to-stone-light">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2
+          class="text-4xl md:text-5xl font-playfair font-bold text-center mb-20"
+        >
+          Наше <span
+            class="text-gold-600 inline-block transform hover:scale-105 transition-transform duration-300"
+            >Услуге</span
+          >
+        </h2>
+        <div class="grid md:grid-cols-3 gap-12">
+          {
+            [
+              {
+                title: "Правно саветовање",
+                description:
+                  "Лорем ипсум долор сит амет, цонсецтетур адиписцинг елит. Сед до еиусмод темпор инцидидунт ут лаборе.",
+                icon: "⚖️",
+              },
+              {
+                title: "Заступање",
+                description:
+                  "Ут еним ад миним вениам, qуис ноструд еџерцитатион улламцо лаборис ниси ут алиqуип еџ еа цоммодо.",
+                icon: "📋",
+              },
+              {
+                title: "Медијација",
+                description:
+                  "Дуис ауте ируре долор ин репрехендерит ин волуптате велит ессе циллум долоре еу фугиат нулла.",
+                icon: "💼",
+              },
+            ].map((service) => (
+              <div class="group">
+                <div class="bg-white p-8 rounded-2xl shadow-custom hover:shadow-custom-lg transform hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                  <div class="absolute inset-0 bg-gradient-radial from-gold-100/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div class="relative">
+                    <div class="text-4xl mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                      {service.icon}
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-navy-dark">
+                      {service.title}
+                    </h3>
+                    <p class="text-stone leading-relaxed">
+                      {service.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="py-24 bg-gradient-to-br from-navy via-navy-dark to-navy text-white"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl md:text-5xl font-playfair font-bold mb-8">
+          Зашто <span
+            class="text-gold-400 inline-block transform hover:scale-105 transition-transform duration-300"
+            >изабрати нас?</span
+          >
+        </h2>
+        <p class="text-xl text-stone-light mb-16 max-w-3xl mx-auto">
+          Лорем ипсум долор сит амет, цонсецтетур адиписцинг елит. Сед до
+          еиусмод темпор инцидидунт.
+        </p>
+        <div class="grid md:grid-cols-4 gap-8">
+          {
+            [
+              { number: "10+", text: "Година искуства" },
+              { number: "500+", text: "Решених случајева" },
+              { number: "90%", text: "Успешност" },
+              { number: "24/7", text: "Доступност" },
+            ].map((stat) => (
+              <div class="group">
+                <div class="bg-navy-light/50 backdrop-blur-sm p-8 rounded-2xl shadow-custom hover:shadow-custom-gold transition-all duration-500 transform hover:-translate-y-1">
+                  <div class="text-4xl font-bold text-gold-400 mb-2 group-hover:scale-110 transition-transform duration-300">
+                    {stat.number}
+                  </div>
+                  <div class="text-stone-light group-hover:text-white transition-colors duration-300">
+                    {stat.text}
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>

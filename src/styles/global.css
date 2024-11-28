@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+body {
+  @apply bg-[#f8f8f5];
+}
+
+/* Add smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Add custom styles for form inputs */
+input,
+textarea {
+  @apply border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+}
+
+/* Style buttons consistently */
+button,
+.button {
+  @apply bg-blue-800 text-white px-6 py-3 rounded-lg hover:bg-blue-900 transition-all duration-300 font-semibold;
+}
+
+/* Add some basic animations */
+.hover-lift {
+  @apply transition-transform duration-300 hover:-translate-y-1;
+}
+
+/* Style headings consistently */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-playfair;
+}
+
+/* Add container padding for all pages */
+.page-container {
+  @apply pt-24 px-4 mx-auto max-w-7xl;
+}
+
+/* Style links */
+a {
+  @apply transition-colors duration-300;
+}
+
+/* Add card styles */
+.card {
+  @apply bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300;
+}

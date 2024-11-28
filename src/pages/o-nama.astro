@@ -1,0 +1,94 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="О нама">
+  <main class="page-container">
+    <div class="max-w-4xl mx-auto">
+      <h1
+        class="text-4xl md:text-5xl font-bold text-navy-dark mb-12 font-playfair"
+      >
+        О нама
+      </h1>
+
+      <div class="bg-white rounded-2xl shadow-custom p-8 md:p-12 space-y-8">
+        <p class="text-lg text-gray-700 leading-relaxed">
+          Лорем ипсум долор сит амет, цонсецтетур адиписцинг елит. Сед до
+          еиусмод темпор инцидидунт ут лаборе ет долоре магна алиqуа.
+        </p>
+
+        <div>
+          <h2 class="text-2xl font-playfair font-semibold text-navy-dark mb-6">
+            Наша експертиза
+          </h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            {
+              [
+                "Привредно право",
+                "Кривично право",
+                "Породично право",
+                "Радно право",
+                "Грађанско право",
+                "Медијација",
+              ].map((area) => (
+                <div class="flex items-center space-x-3 text-gray-700">
+                  <svg
+                    class="w-5 h-5 text-gold-500 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span>{area}</span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-playfair font-semibold text-navy-dark mb-6">
+            Наш приступ
+          </h2>
+          <p class="text-lg text-gray-700 leading-relaxed">
+            Лорем ипсум долор сит амет, цонсецтетур адиписцинг елит. Сед до
+            еиусмод темпор инцидидунт ут лаборе ет долоре магна алиqуа. Ут еним
+            ад миним вениам.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 pt-8">
+          {
+            [
+              {
+                number: "15+",
+                text: "Година искуства",
+              },
+              {
+                number: "1000+",
+                text: "Задовољних клијената",
+              },
+              {
+                number: "95%",
+                text: "Успешност",
+              },
+            ].map((stat) => (
+              <div class="text-center">
+                <div class="text-3xl font-bold text-gold-600 mb-2">
+                  {stat.number}
+                </div>
+                <div class="text-gray-600">{stat.text}</div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
