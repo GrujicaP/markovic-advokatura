@@ -16,17 +16,38 @@ const currentPath = Astro.url.pathname;
       <div class="flex-shrink-0">
         <a
           href="/"
-          class="text-2xl font-playfair text-white hover:text-gold-400 transition-all duration-300 group"
+          class="text-xl md:text-2xl font-playfair text-white hover:text-gold-400 transition-all duration-300"
         >
-          <span
-            class="inline-block transform group-hover:scale-105 transition-transform"
-          >
-            Адв. Миодраг Марковић
-          </span>
+          <span>Адв. Миодраг Марковић</span>
         </a>
       </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button
+          type="button"
+          class="text-white hover:text-gold-400 focus:outline-none"
+          id="mobile-menu-button"
+          aria-label="Toggle menu"
+        >
+          <svg
+            class="h-6 w-6 transition-transform duration-300"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Desktop menu -->
       <div class="hidden md:block">
-        <div class="ml-10 flex items-center space-x-12">
+        <div class="flex items-center space-x-12">
           {
             navItems.map(({ path, label }) => (
               <a
@@ -35,10 +56,7 @@ const currentPath = Astro.url.pathname;
                   currentPath === path
                     ? "text-gold-400"
                     : "text-white hover:text-gold-400"
-                } transition-all duration-300 hover:scale-105 
-                after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 
-                after:bg-gold-400 after:transition-all after:duration-300 hover:after:w-full
-                ${currentPath === path ? "after:w-full" : ""}`}
+                } transition-all duration-300`}
               >
                 {label}
               </a>
@@ -47,5 +65,79 @@ const currentPath = Astro.url.pathname;
         </div>
       </div>
     </div>
+
+    <!-- Mobile menu dropdown -->
+    <div
+      class="hidden md:hidden absolute left-0 right-0 bg-navy-dark/95 backdrop-blur-sm transform origin-top transition-all duration-300 ease-in-out opacity-0 scale-y-0 h-0"
+      id="mobile-menu"
+    >
+      <div class="px-4 py-6 space-y-4">
+        {
+          navItems.map(({ path, label }) => (
+            <a
+              href={path}
+              class={`block text-center font-semibold text-lg py-3 ${
+                currentPath === path
+                  ? "text-gold-400"
+                  : "text-white hover:text-gold-400"
+              } transition-all duration-300 transform hover:scale-105`}
+            >
+              {label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
   </div>
 </nav>
+
+<script>
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const buttonIcon = mobileMenuButton?.querySelector("svg");
+  let isOpen = false;
+
+  function toggleMenu(show: boolean) {
+    if (!mobileMenu || !buttonIcon) return;
+
+    isOpen = show;
+
+    if (show) {
+      // Show menu
+      mobileMenu.classList.remove("hidden");
+      // Use setTimeout to ensure the initial display happens before animation
+      setTimeout(() => {
+        mobileMenu.classList.remove("opacity-0", "scale-y-0", "h-0");
+        mobileMenu.classList.add("opacity-100", "scale-y-100", "h-auto");
+        buttonIcon.classList.add("rotate-90");
+      }, 10);
+    } else {
+      // Hide menu
+      mobileMenu.classList.remove("opacity-100", "scale-y-100", "h-auto");
+      mobileMenu.classList.add("opacity-0", "scale-y-0", "h-0");
+      buttonIcon.classList.remove("rotate-90");
+
+      // Wait for animation to complete before hiding completely
+      setTimeout(() => {
+        if (!isOpen) {
+          mobileMenu.classList.add("hidden");
+        }
+      }, 300);
+    }
+  }
+
+  mobileMenuButton?.addEventListener("click", () => {
+    toggleMenu(!isOpen);
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement;
+    if (
+      !target.closest("#mobile-menu") &&
+      !target.closest("#mobile-menu-button")
+    ) {
+      toggleMenu(false);
+    }
+  });
+</script>
